@@ -1,9 +1,13 @@
 <?php
     include_once('db.php');
-    use DB\{MyDB};
-
-    $json = json_decode(MyDB::getData());
-    
+    use DB\{Producto,Almacen};
+    $almacen = new Almacen();
+    $myProduct = new Producto('televisor',100,400);
+    $myProductSecond = new Producto('tablet apple',500,100);    
+    $newProduct = new Producto('azucar',0,1000);
+    $almacen->set_producto($myProduct);
+    $almacen->set_producto($myProductSecond);    
+    $almacen->set_producto($newProduct);    
 ?>
 
 <!DOCTYPE html>
@@ -16,34 +20,18 @@
   </head>
   <body>
     <table>
-        <?php
-            var_dump($json); 
-        ?>
         <br>
         <br>
         <hr>
 
         <thead>
             <tr>
-                <th>id</th>
-                <th>producto</th>
-                <th>precio</th>
-                <th>disponibilidad</th>
+                <th>productos</th>
             </tr>
         </thead>
         <tbody> 
             <?php    
-                foreach ($json as $key => $producto) {
-                    $disponible = $producto->disponible?'disponible':'no disponible';
-                    echo <<<HTML
-                            <tr>
-                                <td>{$key}</td>
-                                <td>{$producto->nombre}</td>
-                                <td>{$producto->precio}$</td>
-                                <td>{$disponible}</td>
-                            </tr>
-                        HTML;
-                }
+                echo $almacen->get_productos();
             ?>
 
         </tbody>
