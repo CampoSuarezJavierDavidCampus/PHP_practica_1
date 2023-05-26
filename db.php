@@ -11,7 +11,12 @@
                 :$this->cantidad.='Ud';            
         }        
         public function __toString(){            
-            return "Nuevo \"".$this->nombre."\" solo a ".$this->precio."$ estado ".$this->cantidad;
+            return "
+                <td>$this->nombre</td>
+                <td>$this->precio$</td>
+                <td>$this->cantidad</td>
+                
+            ";
         }
         public function get_nombre():string{
             return "Producto: ".$this->nombre;
@@ -47,7 +52,8 @@
             foreach ($this->productos as $i => $descipcion) {                
                 $filas.= "
                     <tr>
-                        <td>".$descipcion."</td>
+                        <td>".$i."</td>
+                        $descipcion
                     </tr>
                 ";
             }

@@ -2,12 +2,12 @@
     include_once('db.php');
     use DB\{Producto,Almacen};
     $almacen = new Almacen();
-    $myProduct = new Producto('televisor',100,400);
-    $myProductSecond = new Producto('tablet apple',500,100);    
-    $newProduct = new Producto('azucar',0,1000);
-    $almacen->set_producto($myProduct);
-    $almacen->set_producto($myProductSecond);    
-    $almacen->set_producto($newProduct);    
+    $producto1 = new Producto('televisor',100,400);
+    $producto2 = new Producto('tablet apple',500,100);    
+    $producto3 = new Producto('azucar',0,1000);
+    $almacen->set_producto($producto1);
+    $almacen->set_producto($producto2);    
+    $almacen->set_producto($producto3);    
 ?>
 
 <!DOCTYPE html>
@@ -26,17 +26,18 @@
 
         <thead>
             <tr>
-                <th>productos</th>
+                <th>id</th>
+                <th>nombre</th>
+                <th>precio</th>
+                <th>cantidad</th>                
             </tr>
         </thead>
         <tbody> 
             <?php    
                 echo $almacen->get_productos();
             ?>
-
         </tbody>
-    </table>
-    
+    </table>    
 
 
   </body>
